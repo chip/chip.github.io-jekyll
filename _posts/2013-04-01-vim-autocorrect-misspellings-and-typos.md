@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Vim autocorrect misspellings and typos"
+title: "Vim can autocorrect misspellings and typos"
 description: ""
 category: 
 tags: [misspelling misspell typos typo plugin vim]
