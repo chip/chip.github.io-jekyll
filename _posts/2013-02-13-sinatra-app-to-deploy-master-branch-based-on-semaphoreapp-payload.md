@@ -20,13 +20,13 @@ So let's see how this app is setup...
 
 This Sinatra app is installed on our staging server as follows:
 
-[wbrent@dev-web1 deploy]$ **pwd**
+$ **pwd**
 
     /var/www/deploy
 
 Here's our project tree and the associated files' source code:
 
-[wbrent@dev-web1 deploy]$ **tree**
+$ **tree**
 
     .
     |-- Gemfile
