@@ -16,7 +16,7 @@ administrators.
 
 Even if you're beyond the beginner level or not interested in the screencast,
 I'll also be providing regular tips on **UNIX** and **Linux** via our [Email
-newsletter](](http://learning-the-unix-command-line-on-os-x.chipcastle.com), so
+newsletter](http://learning-the-unix-command-line-on-os-x.chipcastle.com), so
 please sign up if you're interested.
 
 As an added bonus, I'll also be providing a **FREE PDF of software development
