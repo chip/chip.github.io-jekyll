@@ -9,8 +9,8 @@ pygments: true
 # Themes are encouraged to use these universal variables 
 # so be sure to set them if your theme uses them.
 #
-title : Chip Castle's Blog - chip.github.io
-tagline: Thoughts from a Unix hacker
+title : Thoughts from a UNIX hacker - chip.github.io
+tagline: Thoughts from a UNIX hacker
 author :
   name : Chip Castle
   email : chip@chipcastle.com
