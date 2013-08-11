@@ -7,10 +7,9 @@ tags: []
 ---
 {% include JB/setup %}
 
-# Using curly brace expansion in bash
-
-Did you know that UNIX's bash shell offers a shortcut for specifying
-sometimes complex directory structures and filename combinations?
+Did you know that the bash shell in UNIX offers a shortcut for
+specifying sometimes complex directory structures and filename
+combinations?
 
 Well, it can, and that functionality is generally referred to as "curly
 brace expansion", or just simply "brace expansion".  To illustrate this
@@ -31,10 +30,6 @@ accomplish that:
     -rw-r--r--  1 chip  staff    0 Aug 11 13:45 2.txt
     -rw-r--r--  1 chip  staff    0 Aug 11 13:45 3.out
     -rw-r--r--  1 chip  staff    0 Aug 11 13:45 3.txt
-    drwxr-xr-x  2 chip  staff   68 Aug 11 13:13 config
-    drwxr-xr-x  2 chip  staff   68 Aug 11 13:13 db
-    drwxr-xr-x  5 chip  staff  170 Aug 11 13:13 public
-    drwxr-xr-x  2 chip  staff   68 Aug 11 13:13 views
 
 That works fine, but if you had to create a lot of files it might become
 far too cumbersome.
@@ -57,10 +52,6 @@ And here are the files that the command created:
     -rw-r--r--  1 chip  staff    0 Aug 11 13:38 2.txt
     -rw-r--r--  1 chip  staff    0 Aug 11 13:38 3.out
     -rw-r--r--  1 chip  staff    0 Aug 11 13:38 3.txt
-    drwxr-xr-x  2 chip  staff   68 Aug 11 13:13 config
-    drwxr-xr-x  2 chip  staff   68 Aug 11 13:13 db
-    drwxr-xr-x  5 chip  staff  170 Aug 11 13:13 public
-    drwxr-xr-x  2 chip  staff   68 Aug 11 13:13 views
 
 This produces the same result as before, but in a much easier fashion.
 
@@ -68,19 +59,7 @@ We can also use brace expansion for removing files as well, so let's
 clean up our mess:
 
     chip@iMac ~/code/foo
-    ☺ rm {1,2,3}\*
-
-And again, looking at the contents of our directory:
-
-    chip@iMac ~/code/foo
-    ☺ ls -l
-    total 0
-    drwxr-xr-x  2 chip  staff   68 Aug 11 13:13 config
-    drwxr-xr-x  2 chip  staff   68 Aug 11 13:13 db
-    drwxr-xr-x  5 chip  staff  170 Aug 11 13:13 public
-    drwxr-xr-x  2 chip  staff   68 Aug 11 13:13 views
-
-As you can see, those files have now been removed.
+    ☺ rm {1,2,3}*
 
 Another usage of this technique can be applied when creating
 directories.  Here's what I used recently for
