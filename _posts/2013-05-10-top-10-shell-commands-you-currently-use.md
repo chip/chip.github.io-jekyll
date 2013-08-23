@@ -15,10 +15,15 @@ From time to time, I like to analyze which unix or linux shell commands I'm
 using most frequently.  To do this, all I need is a little awk, like the
 following:
 
-    history | \
-    awk '{a[$2]++}END{for(i in a){print a[i] " " i}}' | \
-    sort -rn | \
-    head
+<br>
+{% highlight bash %}
+
+history | \
+awk '{a[$2]++}END{for(i in a){print a[i] " " i}}' | \
+sort -rn | \
+head
+
+{% endhighlight %}
 
 So what does this do?  
 
@@ -28,27 +33,37 @@ command you typed and increments it each time it is found.
 Then it displays a sorted report showing the count of the command and the
 command, like this example on my iMac:
 
-    1705 git
-    1420 ack
-    1016 vi
-    501 ls
-    490 commit
-    310 cd
-    211 cat
-    202 g
-    191 rm
-    181 c
+<br>
+{% highlight bash %}
+
+1705 git
+1420 ack
+1016 vi
+501 ls
+490 commit
+310 cd
+211 cat
+202 g
+191 rm
+181 c
+
+{% endhighlight %}
 
 Based on this output of the top 10 most frequently used shell commands, it
 shows that I'm using git, ack, and vi a TON, so it would be helpful to create
 aliases for these commands.  I generally prefer 1-character aliases if I can
 get away with it.  Here are a few examples:
 
-    alias a="ack"
-    alias g="git"
-    alias v="vi"
-    alias l="ls -al"
-    alias c="git commit -m"
+<br>
+{% highlight bash %}
+
+alias a="ack"
+alias g="git"
+alias v="vi"
+alias l="ls -al"
+alias c="git commit -m"
+
+{% endhighlight %}
 
 I have found that these aliases alone have sped up my workflow significantly,
 as well as reduce the wear and tear on my fingers.

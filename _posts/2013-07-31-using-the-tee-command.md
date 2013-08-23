@@ -20,20 +20,30 @@ system.
 
 That easy enough:
 
-    iMac:~ $ df -h
-    Filesystem      Size   Used  Avail Capacity  iused     ifree %iused Mounted on
-    /dev/disk0s2   233Gi  151Gi   82Gi    65% 39657424  21412016   65%  /
-    devfs          204Ki  204Ki    0Bi   100%      704         0  100%  /dev
-    /dev/disk1s2   931Gi   91Gi  840Gi    10% 23782594 220324072   10%  /Volumes/Macintosh HD 2
-    map -hosts       0Bi    0Bi    0Bi   100%        0         0  100%  /net
-    map auto_home    0Bi    0Bi    0Bi   100%        0         0  100%  /home
+<br>
+{% highlight bash %}
+
+iMac:~ $ df -h
+Filesystem      Size   Used  Avail Capacity  iused     ifree %iused
+/dev/disk0s2   233Gi  151Gi   82Gi    65% 39657424  21412016   65% 
+devfs          204Ki  204Ki    0Bi   100%      704         0  100% 
+/dev/disk1s2   931Gi   91Gi  840Gi    10% 23782594 220324072   10% 
+map -hosts       0Bi    0Bi    0Bi   100%        0         0  100% 
+map auto_home    0Bi    0Bi    0Bi   100%        0         0  100% 
+
+{% endhighlight %}
 
 But what if we also want to save those results to a file?
 
 That would be easy to do as well, just by redirecting standard output
 (i.e., stdout) to a file:
 
-    iMac:~ $ df -h > df.out
+<br>
+{% highlight bash %}
+
+iMac:~ $ df -h > df.out
+
+{% endhighlight %}
 
 **That works fine, except that I don't want to type 2 separate commands.**
 
@@ -50,25 +60,35 @@ a copy in zero or more files.*
 
 Let's try our example again, but this time using tee:
 
-    iMac:~ $ df -h | tee df.out
-    Filesystem      Size   Used  Avail Capacity  iused     ifree %iused Mounted on
-    /dev/disk0s2   233Gi  151Gi   82Gi    65% 39657219  21412221   65%  /
-    devfs          204Ki  204Ki    0Bi   100%      704         0  100%  /dev
-    /dev/disk1s2   931Gi   91Gi  840Gi    10% 23782594 220324072   10%  /Volumes/Macintosh HD 2
-    map -hosts       0Bi    0Bi    0Bi   100%        0         0  100%  /net
-    map auto_home    0Bi    0Bi    0Bi   100%        0         0  100%  /home
+<br>
+{% highlight bash %}
+
+iMac:~ $ df -h | tee df.out
+Filesystem      Size   Used  Avail Capacity  iused     ifree %iused
+/dev/disk0s2   233Gi  151Gi   82Gi    65% 39657219  21412221   65%
+devfs          204Ki  204Ki    0Bi   100%      704         0  100%
+/dev/disk1s2   931Gi   91Gi  840Gi    10% 23782594 220324072   10%
+map -hosts       0Bi    0Bi    0Bi   100%        0         0  100%
+map auto_home    0Bi    0Bi    0Bi   100%        0         0  100%
+
+{% endhighlight %}
 
 Now let's take a look at the contents of that file, just to be sure that
 the disk information was written there in addition to what we saw on
 standard output:
 
-    iMac:~ $ cat df.out 
-    Filesystem      Size   Used  Avail Capacity  iused     ifree %iused Mounted on
-    /dev/disk0s2   233Gi  151Gi   82Gi    65% 39657219  21412221   65%  /
-    devfs          204Ki  204Ki    0Bi   100%      704         0  100%  /dev
-    /dev/disk1s2   931Gi   91Gi  840Gi    10% 23782594 220324072   10%  /Volumes/Macintosh HD 2
-    map -hosts       0Bi    0Bi    0Bi   100%        0         0  100%  /net
-    map auto_home    0Bi    0Bi    0Bi   100%        0         0  100%  /home
+<br>
+{% highlight bash %}
+
+iMac:~ $ cat df.out 
+Filesystem      Size   Used  Avail Capacity  iused     ifree %iused
+/dev/disk0s2   233Gi  151Gi   82Gi    65% 39657219  21412221   65% 
+devfs          204Ki  204Ki    0Bi   100%      704         0  100% 
+/dev/disk1s2   931Gi   91Gi  840Gi    10% 23782594 220324072   10% 
+map -hosts       0Bi    0Bi    0Bi   100%        0         0  100% 
+map auto_home    0Bi    0Bi    0Bi   100%        0         0  100% 
+
+{% endhighlight %}
 
 The output is identical to what we saw when we ran the original command,
 which is exactly the result we want.
