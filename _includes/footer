@@ -1,0 +1,42 @@
+<div class="footer">
+  <div class="signature">
+    <div class="avatar">
+      <a href="http://chipcastle.com/"><img src="/assets/images/chip.jpg"></a>
+    </div>
+    <div class="contact">
+      <h4>
+        <a href="http://chipcastle.com/">Chip Castle</a>
+      </h4>
+      <h5>
+        <a href="https://chip.github.io">UNIX hacker, 20+ years</a>
+      </h5>
+    </div>
+    <ul>
+      <li>
+        <a href="https://coderwall.com/chip">
+          <img src="/assets/images/coderwall-32-black.png">
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/chip">
+          <img src="/assets/images/github-32-black.png">
+        </a>
+      </li>
+      <li>
+        <a href="https://twitter.com/chipcastle">
+          <img src="/assets/images/twitter-32-black.png">
+        </a>
+      </li>
+      <li>
+        <a href="https://plus.google.com/106206115730073392445?rel=author">
+          <img src="/assets/images/googleplus-32-black.png">
+        </a>
+      </li>
+      <li>
+        <a href="http://feeds.feedburner.com/github/chip">
+          <img src="/assets/images/rss-32-black.png">
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
