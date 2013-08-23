@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Top 10 shell commands you currently use   Part 2</title>
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+        <!-- MailChimp form style -->
+        <link href="/css/slim-081711.css" rel="stylesheet" type="text/css">
+        <style type="text/css">
+          #mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; }
+        </style>
+    </head>
+    <body style="background-color: white">
+        <div class="container" align="center" style="background-color:
+          #FAFAFA">
+
+          <div id="content" style="width: 600px; border: 3px solid
+            lightgray; padding: 20px; background-color: white">
+            <a href="/"><img
+              src="/assets/images/LearningTheUnixCommandLine.png"></a>
+            <table width="100%">
+              <tr>
+                <td align="left">
+                  <p>In a <a href='/2013/05/10/top-10-shell-commands-you-currently-use/'>previous post</a>, I demonstrated how you can get a list of the <strong>Top 10 shell commands</strong> you currently use, and how you can use this information to improve your workflow.</p>
+
+<p>Since then I&#8217;ve received a number of suggestions and have also thought about this command a good bit more, so I thought that I could offer a variation on the implementation.</p>
+
+<p>The previous version used <code>awk</code> but this one will instead use <code>cut</code>, as follows:</p>
+<br /><div class='highlight'><pre><code class='bash'><span class='nb'>history</span> <span class='se'>\|</span>
+cut -c8- <span class='se'>\|</span>
+cut -d<span class='s1'>&#39; &#39;</span> -f1 <span class='se'>\|</span>
+sort <span class='se'>\|</span>
+uniq -c <span class='se'>\|</span>
+sort -nr <span class='se'>\|</span>
+head
+</code></pre></div>
+<p>I&#8217;ve formatted this solution to show only one command per line, just so that it&#8217;s easy to read and follow my step-by-step description.</p>
+
+<p><strong>1.</strong> To start off, and without surprise, we issue the <code>history</code> command.</p>
+
+<p><strong>2.</strong> Next, we use <code>cut</code> to remove the first 8 characters only of the output. <strong>My system is OS X, so just keep in mind that if you&#8217;re on another system, the spacing of the output might possibly vary a little.</strong></p>
+
+<p><strong>3.</strong> Again we use <code>cut</code>, but this time we accept the output of the previous command by using the <code>-d</code> option, where we specify it to split on a single space, but ask for only the first field of the result set to be returned using the <code>-f</code> option.</p>
+
+<p><strong>4.</strong> Next up is really nothing special. We simply <code>sort</code> the output.</p>
+
+<p><strong>5.</strong> We then filter the sorted results using <code>uniq</code>, but we&#8217;ve made sure to include the <code>-c</code> option to precede each output line with the count of the number of times the line occurred in the input, followed by a single space. Special thanks to @tdl for this tip in my <a href='https://coderwall.com/p/o5qijw'>previous post on Coderwall</a>.</p>
+
+<p><strong>6.</strong> To round out the most frequently used commands, we are sure to <code>sort</code> the output numerically due to the command counts provided by <code>uniq</code>, and to be sure to do so in reverse order since we&#8217;re interested in the most frequently occurring commands first.</p>
+
+<p><strong>7.</strong> Lastly, we use <code>head</code> to show the <strong>Top 10 shell commands</strong>. Of course, you could always vary this a bit if you&#8217;re interested in more than 10 by simply specifying <strong>-n count</strong>, where <strong>count</strong> should be replaced with the number of results you desire.</p>
+
+<p>The previous tip was so popular that I felt this merited some more thought. I think it&#8217;s a great example not only of how to improve your workflow, but also how shell commands can generally solve problems in variety of ways.</p>
+
+<p>Enjoy, Chip</p>
+                </td>
+              </tr>
+            </table>
+
+            <div class="footer">
+  <div class="signature">
+    <div class="avatar">
+      <a href="http://chipcastle.com/"><img src="/assets/images/chip.jpg"></a>
+    </div>
+    <div class="contact">
+      <h4>
+        <a href="http://chipcastle.com/">Chip Castle</a>
+      </h4>
+      <h5>
+        <a href="https://chip.github.io">UNIX hacker, 20+ years</a>
+      </h5>
+    </div>
+    <ul>
+      <li>
+        <a href="https://coderwall.com/chip">
+          <img src="/assets/images/coderwall-32-black.png">
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/chip">
+          <img src="/assets/images/github-32-black.png">
+        </a>
+      </li>
+      <li>
+        <a href="https://twitter.com/chipcastle">
+          <img src="/assets/images/twitter-32-black.png">
+        </a>
+      </li>
+      <li>
+        <a href="https://plus.google.com/106206115730073392445?rel=author">
+          <img src="/assets/images/googleplus-32-black.png">
+        </a>
+      </li>
+      <li>
+        <a href="http://feeds.feedburner.com/github/chip">
+          <img src="/assets/images/rss-32-black.png">
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+          </div>
+        </div> <!-- /container -->
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-40313722-2', 'chipcastle.com');
+          ga('send', 'pageview');
+        </script>
+    </body>
+</html>

@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ 
+ <title>Learning the UNIX Command Line on OS X</title>
+ <link href="http://chip.github.io/" rel="self"/>
+ <link href="http://chip.github.io"/>
+ <updated>2013-08-22T23:05:34-05:00</updated>
+ <id>http://chip.github.io</id>
+ <author>
+   <name>Chip Castle</name>
+   <email>chip@chipcastle.com</email>
+ </author>
+
+ 
+ <entry>
+   <title>Using the tee command</title>
+   <link href="http://chip.github.io/2013/07/31/using-the-tee-command"/>
+   <updated>2013-07-31T00:00:00-05:00</updated>
+   <id>http://chip.github.io/2013/07/31/using-the-tee-command</id>
+   <content type="html">&lt;p&gt;Hey there!&lt;/p&gt;
+
+&lt;p&gt;It&amp;#8217;s time for another installment of UNIX command line tips. In the previous newsletter, we talked about the &lt;code&gt;env&lt;/code&gt; command and how you can use it to view your account&amp;#8217;s environment variables, as well as a couple of other neat tricks. This week, we&amp;#8217;re going to demonstrate something completely different. I hope you enjoy it.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;#8217;s say you&amp;#8217;re interested in how much free disk space you have on your system.&lt;/p&gt;
+
+&lt;p&gt;That easy enough:&lt;/p&gt;
+&lt;br /&gt;&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='bash'&gt;iMac:~ &lt;span class='nv'&gt;$ &lt;/span&gt;df -h
+Filesystem      Size   Used  Avail Capacity  iused     ifree %iused
+/dev/disk0s2   233Gi  151Gi   82Gi    65% 39657424  21412016   65% 
+devfs          204Ki  204Ki    0Bi   100%      704         0  100% 
+/dev/disk1s2   931Gi   91Gi  840Gi    10% 23782594 220324072   10% 
+map -hosts       0Bi    0Bi    0Bi   100%        0         0  100% 
+map auto_home    0Bi    0Bi    0Bi   100%        0         0  100% 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;But what if we also want to save those results to a file?&lt;/p&gt;
+
+&lt;p&gt;That would be easy to do as well, just by redirecting standard output (i.e., stdout) to a file:&lt;/p&gt;
+&lt;br /&gt;&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='bash'&gt;iMac:~ &lt;span class='nv'&gt;$ &lt;/span&gt;df -h &amp;gt; df.out
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;That works fine, except that I don&amp;#8217;t want to type 2 separate commands.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;In fact, for some examples, it might not be feasible to run the commands separately because the output might differ. What you need instead is the ability to capture the output, send it to standard output (e.g., the terminal), and also save it to a separate file.&lt;/p&gt;
+
+&lt;p&gt;Well, there&amp;#8217;s a command that will help you do just that - the tee command.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;According to the UNIX man pages on OS X:&lt;/strong&gt; &lt;em&gt;The tee utility copies from standard input to standard output, making a copy in zero or more files.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Let&amp;#8217;s try our example again, but this time using tee:&lt;/p&gt;
+&lt;br /&gt;&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='bash'&gt;iMac:~ &lt;span class='nv'&gt;$ &lt;/span&gt;df -h | tee df.out
+Filesystem      Size   Used  Avail Capacity  iused     ifree %iused
+/dev/disk0s2   233Gi  151Gi   82Gi    65% 39657219  21412221   65%
+devfs          204Ki  204Ki    0Bi   100%      704         0  100%
+/dev/disk1s2   931Gi   91Gi  840Gi    10% 23782594 220324072   10%
+map -hosts       0Bi    0Bi    0Bi   100%        0         0  100%
+map auto_home    0Bi    0Bi    0Bi   100%        0         0  100%
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now let&amp;#8217;s take a look at the contents of that file, just to be sure that the disk information was written there in addition to what we saw on standard output:&lt;/p&gt;
+&lt;br /&gt;&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='bash'&gt;iMac:~ &lt;span class='nv'&gt;$ &lt;/span&gt;cat df.out 
+Filesystem      Size   Used  Avail Capacity  iused     ifree %iused
+/dev/disk0s2   233Gi  151Gi   82Gi    65% 39657219  21412221   65% 
+devfs          204Ki  204Ki    0Bi   100%      704         0  100% 
+/dev/disk1s2   931Gi   91Gi  840Gi    10% 23782594 220324072   10% 
+map -hosts       0Bi    0Bi    0Bi   100%        0         0  100% 
+map auto_home    0Bi    0Bi    0Bi   100%        0         0  100% 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The output is identical to what we saw when we ran the original command, which is exactly the result we want.&lt;/p&gt;
+
+&lt;p&gt;So, next time you need to see standard output and also copy it to a file, remember that the tee command is a great option.&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Using env to print and set your environment variables</title>
+   <link href="http://chip.github.io/2013/07/24/using-env-to-print-and-set-your-environment-variables"/>
+   <updated>2013-07-24T00:00:00-05:00</updated>
+   <id>http://chip.github.io/2013/07/24/using-env-to-print-and-set-your-environment-variables</id>
+   <content type="html">&lt;p&gt;From time to time, I need to know the value of a specific &lt;strong&gt;UNIX&lt;/strong&gt; environment variable. Of course, that&amp;#8217;s easy enough to do if you know the exact spelling of the variable, as in the case of the current working directory:&lt;/p&gt;
+&lt;br /&gt;&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='bash'&gt;☺ &lt;span class='nb'&gt;echo&lt;/span&gt; &lt;span class='nv'&gt;$PWD&lt;/span&gt;
+/Users/chip/code/chip.github.com
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;However, what if I&amp;#8217;m unsure of the spelling, or I simply want to see all of the variables that are set for my current environment? That&amp;#8217;s easy enough to find as well, using the &lt;code&gt;env&lt;/code&gt; command (output below is limited for readability):&lt;/p&gt;
+&lt;br /&gt;&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='bash'&gt;☺ env 
+&lt;span class='nv'&gt;ARCHFLAGS&lt;/span&gt;&lt;span class='o'&gt;=&lt;/span&gt;-arch x86_64
+&lt;span class='nv'&gt;Apple_PubSub_Socket_Render&lt;/span&gt;&lt;span class='o'&gt;=&lt;/span&gt;/tmp/launch-gANhjR/Render
+&lt;span class='nv'&gt;Apple_Ubiquity_Message&lt;/span&gt;&lt;span class='o'&gt;=&lt;/span&gt;/tmp/launch-yn5YIm/Apple_Ubiquity_Message
+&lt;span class='nv'&gt;CLICOLOR&lt;/span&gt;&lt;span class='o'&gt;=&lt;/span&gt;1
+&lt;span class='nv'&gt;COMMAND_MODE&lt;/span&gt;&lt;span class='o'&gt;=&lt;/span&gt;unix2003
+&lt;span class='nv'&gt;DISPLAY&lt;/span&gt;&lt;span class='o'&gt;=&lt;/span&gt;/tmp/launch-okscQD/org.macosforge.xquartz:0
+&lt;span class='nv'&gt;EDITOR&lt;/span&gt;&lt;span class='o'&gt;=&lt;/span&gt;/usr/bin/vim -f
+.
+.
+.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;That&amp;#8217;s pretty effective and since the environment variables are sorted, it makes it easy to find a specific setting.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;But,&lt;/strong&gt; &lt;code&gt;env&lt;/code&gt;, &lt;strong&gt;can do more!&lt;/strong&gt; It can also set the environment for you for specific utilities. Let&amp;#8217;s look at some example Ruby code to demonstrate this example:&lt;/p&gt;
+&lt;br /&gt;&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='bash'&gt;☺ cat env.rb
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;br /&gt;&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='ruby'&gt;&lt;span class='c1'&gt;#!/usr/bin/env ruby&lt;/span&gt;
+
+&lt;span class='nb'&gt;puts&lt;/span&gt; &lt;span class='no'&gt;ENV&lt;/span&gt;&lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='s1'&gt;&amp;#39;PWD&amp;#39;&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Here you can see that this little script simply prints the contents of the &lt;code&gt;PWD&lt;/code&gt; environment variable to &lt;code&gt;STDOUT&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;For sanity, let&amp;#8217;s check the current setting of that variable just so we can see if it matches our expectations:&lt;/p&gt;
+&lt;br /&gt;&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='bash'&gt;☺ &lt;span class='nb'&gt;echo&lt;/span&gt; &lt;span class='nv'&gt;$PWD&lt;/span&gt;
+/Users/chip/code/chip.github.com
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;That was what I expected. So, let&amp;#8217;s say I want this script to use another setting for that environment variable. I&amp;#8217;ll try to set it first before calling the script:&lt;/p&gt;
+&lt;br /&gt;&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='bash'&gt;☺ env &lt;span class='nv'&gt;PWD&lt;/span&gt;&lt;span class='o'&gt;=&lt;/span&gt;/tmp ./env.rb
+/Users/chip/code/chip.github.com
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;But, wait! That didn&amp;#8217;t do anything.&lt;/strong&gt; That&amp;#8217;s because the &lt;code&gt;env&lt;/code&gt; command inherits the current environment by default, which as we saw before had a different value than the one we passed: &lt;code&gt;/tmp&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;The way to get around this is to pass the &lt;code&gt;-i&lt;/code&gt; flag to &lt;code&gt;env&lt;/code&gt;, like so:&lt;/p&gt;
+&lt;br /&gt;&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='bash'&gt;☺ env -i &lt;span class='nv'&gt;PWD&lt;/span&gt;&lt;span class='o'&gt;=&lt;/span&gt;/tmp ./env.rb
+/tmp
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now it uses the variable as expected. &lt;strong&gt;Keep in mind that it didn&amp;#8217;t set this variable permanently&lt;/strong&gt;, but instead just for the execution of the utility we passed it, which in this case was the &lt;code&gt;env.rb&lt;/code&gt; script.&lt;/p&gt;
+
+&lt;p&gt;To prove it, let&amp;#8217;s take a look at the &lt;code&gt;PWD&lt;/code&gt; variable one more time:&lt;/p&gt;
+&lt;br /&gt;&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='bash'&gt;☺ &lt;span class='nb'&gt;echo&lt;/span&gt; &lt;span class='nv'&gt;$PWD&lt;/span&gt;
+/Users/chip/code/chip.github.com
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Based on the information above, if you ever need to review your current environment, or set it for a single run of a utility, it&amp;#8217;s easy enough to do using the &lt;code&gt;env&lt;/code&gt; command.&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Top 10 shell commands you currently use   Part 2</title>
+   <link href="http://chip.github.io/2013/07/02/top-10-shell-commands-you-currently-use---part-2"/>
+   <updated>2013-07-02T00:00:00-05:00</updated>
+   <id>http://chip.github.io/2013/07/02/top-10-shell-commands-you-currently-use---part-2</id>
+   <content type="html">&lt;p&gt;In a &lt;a href='/2013/05/10/top-10-shell-commands-you-currently-use/'&gt;previous post&lt;/a&gt;, I demonstrated how you can get a list of the &lt;strong&gt;Top 10 shell commands&lt;/strong&gt; you currently use, and how you can use this information to improve your workflow.&lt;/p&gt;
+
+&lt;p&gt;Since then I&amp;#8217;ve received a number of suggestions and have also thought about this command a good bit more, so I thought that I could offer a variation on the implementation.&lt;/p&gt;
+
+&lt;p&gt;The previous version used &lt;code&gt;awk&lt;/code&gt; but this one will instead use &lt;code&gt;cut&lt;/code&gt;, as follows:&lt;/p&gt;
+&lt;br /&gt;&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='bash'&gt;&lt;span class='nb'&gt;history&lt;/span&gt; &lt;span class='se'&gt;\|&lt;/span&gt;
+cut -c8- &lt;span class='se'&gt;\|&lt;/span&gt;
+cut -d&lt;span class='s1'&gt;&amp;#39; &amp;#39;&lt;/span&gt; -f1 &lt;span class='se'&gt;\|&lt;/span&gt;
+sort &lt;span class='se'&gt;\|&lt;/span&gt;
+uniq -c &lt;span class='se'&gt;\|&lt;/span&gt;
+sort -nr &lt;span class='se'&gt;\|&lt;/span&gt;
+head
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;I&amp;#8217;ve formatted this solution to show only one command per line, just so that it&amp;#8217;s easy to read and follow my step-by-step description.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;1.&lt;/strong&gt; To start off, and without surprise, we issue the &lt;code&gt;history&lt;/code&gt; command.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;2.&lt;/strong&gt; Next, we use &lt;code&gt;cut&lt;/code&gt; to remove the first 8 characters only of the output. &lt;strong&gt;My system is OS X, so just keep in mind that if you&amp;#8217;re on another system, the spacing of the output might possibly vary a little.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;3.&lt;/strong&gt; Again we use &lt;code&gt;cut&lt;/code&gt;, but this time we accept the output of the previous command by using the &lt;code&gt;-d&lt;/code&gt; option, where we specify it to split on a single space, but ask for only the first field of the result set to be returned using the &lt;code&gt;-f&lt;/code&gt; option.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;4.&lt;/strong&gt; Next up is really nothing special. We simply &lt;code&gt;sort&lt;/code&gt; the output.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;5.&lt;/strong&gt; We then filter the sorted results using &lt;code&gt;uniq&lt;/code&gt;, but we&amp;#8217;ve made sure to include the &lt;code&gt;-c&lt;/code&gt; option to precede each output line with the count of the number of times the line occurred in the input, followed by a single space. Special thanks to @tdl for this tip in my &lt;a href='https://coderwall.com/p/o5qijw'&gt;previous post on Coderwall&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;6.&lt;/strong&gt; To round out the most frequently used commands, we are sure to &lt;code&gt;sort&lt;/code&gt; the output numerically due to the command counts provided by &lt;code&gt;uniq&lt;/code&gt;, and to be sure to do so in reverse order since we&amp;#8217;re interested in the most frequently occurring commands first.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;7.&lt;/strong&gt; Lastly, we use &lt;code&gt;head&lt;/code&gt; to show the &lt;strong&gt;Top 10 shell commands&lt;/strong&gt;. Of course, you could always vary this a bit if you&amp;#8217;re interested in more than 10 by simply specifying &lt;strong&gt;-n count&lt;/strong&gt;, where &lt;strong&gt;count&lt;/strong&gt; should be replaced with the number of results you desire.&lt;/p&gt;
+
+&lt;p&gt;The previous tip was so popular that I felt this merited some more thought. I think it&amp;#8217;s a great example not only of how to improve your workflow, but also how shell commands can generally solve problems in variety of ways.&lt;/p&gt;
+
+&lt;p&gt;Enjoy, Chip&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Do you manage a lot of servers with ssh?</title>
+   <link href="http://chip.github.io/2013/06/22/do-you-manage-a-lot-of-servers-with-ssh"/>
+   <updated>2013-06-22T00:00:00-05:00</updated>
+   <id>http://chip.github.io/2013/06/22/do-you-manage-a-lot-of-servers-with-ssh</id>
+   <content type="html">&lt;p&gt;If you have a lot of servers that you manage and you can&amp;#8217;t remember all of the IP addresses, add a configuration like this to &lt;code&gt;~/.ssh/config&lt;/code&gt;:&lt;/p&gt;
+&lt;br /&gt;&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='bash'&gt;Host macbook
+HostName 192.168.1.50
+User chip
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Substitute the values for &lt;strong&gt;Host&lt;/strong&gt;, &lt;strong&gt;HostName&lt;/strong&gt; and &lt;strong&gt;User&lt;/strong&gt; to suit your specific needs.&lt;/p&gt;
+
+&lt;p&gt;Logging in is now as easy as this:&lt;/p&gt;
+&lt;br /&gt;&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='bash'&gt;ssh macbook
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Top 10 shell commands you currently use</title>
+   <link href="http://chip.github.io/2013/05/10/top-10-shell-commands-you-currently-use"/>
+   <updated>2013-05-10T00:00:00-05:00</updated>
+   <id>http://chip.github.io/2013/05/10/top-10-shell-commands-you-currently-use</id>
+   <content type="html">&lt;p&gt;First off, &lt;strong&gt;I need to credit &lt;a href='https://twitter.com/r00k'&gt;Ben Orenstein&lt;/a&gt; for this idea&lt;/strong&gt;. Since I&amp;#8217;ve found it to be very useful, I thought others could benefit from it, so here goes&amp;#8230;&lt;/p&gt;
+
+&lt;p&gt;From time to time, I like to analyze which unix or linux shell commands I&amp;#8217;m using most frequently. To do this, all I need is a little awk, like the following:&lt;/p&gt;
+&lt;br /&gt;&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='bash'&gt;&lt;span class='nb'&gt;history&lt;/span&gt; | &lt;span class='se'&gt;\&lt;/span&gt;
+awk &lt;span class='s1'&gt;&amp;#39;{a[$2]++}END{for(i in a){print a[i] &amp;quot; &amp;quot; i}}&amp;#39;&lt;/span&gt; | &lt;span class='se'&gt;\&lt;/span&gt;
+sort -rn | &lt;span class='se'&gt;\&lt;/span&gt;
+head
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;So what does this do?&lt;/p&gt;
+
+&lt;p&gt;Basically, it parses your history looking at the 2nd column, which is the command you typed and increments it each time it is found.&lt;/p&gt;
+
+&lt;p&gt;Then it displays a sorted report showing the count of the command and the command, like this example on my iMac:&lt;/p&gt;
+&lt;br /&gt;&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='bash'&gt;1705 git
+1420 ack
+1016 vi
+501 ls
+490 commit
+310 &lt;span class='nb'&gt;cd&lt;/span&gt;
+211 cat
+202 g
+191 rm
+181 c
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Based on this output of the top 10 most frequently used shell commands, it shows that I&amp;#8217;m using git, ack, and vi a TON, so it would be helpful to create aliases for these commands. I generally prefer 1-character aliases if I can get away with it. Here are a few examples:&lt;/p&gt;
+&lt;br /&gt;&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='bash'&gt;&lt;span class='nb'&gt;alias &lt;/span&gt;&lt;span class='nv'&gt;a&lt;/span&gt;&lt;span class='o'&gt;=&lt;/span&gt;&lt;span class='s2'&gt;&amp;quot;ack&amp;quot;&lt;/span&gt;
+&lt;span class='nb'&gt;alias &lt;/span&gt;&lt;span class='nv'&gt;g&lt;/span&gt;&lt;span class='o'&gt;=&lt;/span&gt;&lt;span class='s2'&gt;&amp;quot;git&amp;quot;&lt;/span&gt;
+&lt;span class='nb'&gt;alias &lt;/span&gt;&lt;span class='nv'&gt;v&lt;/span&gt;&lt;span class='o'&gt;=&lt;/span&gt;&lt;span class='s2'&gt;&amp;quot;vi&amp;quot;&lt;/span&gt;
+&lt;span class='nb'&gt;alias &lt;/span&gt;&lt;span class='nv'&gt;l&lt;/span&gt;&lt;span class='o'&gt;=&lt;/span&gt;&lt;span class='s2'&gt;&amp;quot;ls -al&amp;quot;&lt;/span&gt;
+&lt;span class='nb'&gt;alias &lt;/span&gt;&lt;span class='nv'&gt;c&lt;/span&gt;&lt;span class='o'&gt;=&lt;/span&gt;&lt;span class='s2'&gt;&amp;quot;git commit -m&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;I have found that these aliases alone have sped up my workflow significantly, as well as reduce the wear and tear on my fingers.&lt;/p&gt;
+
+&lt;p&gt;This has become so useful that I created an alias for it as well, which I&amp;#8217;ll cover in a later tip.&lt;/p&gt;
+
+&lt;p&gt;Please try it out and let me know your thoughts.&lt;/p&gt;
+
+&lt;p&gt;Enjoy, Chip&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>List aliases in UNIX or Linux</title>
+   <link href="http://chip.github.io/2013/04/15/list-aliases-in-unix-or-linux"/>
+   <updated>2013-04-15T00:00:00-05:00</updated>
+   <id>http://chip.github.io/2013/04/15/list-aliases-in-unix-or-linux</id>
+   <content type="html">&lt;p&gt;Are you wondering if you have a UNIX alias already set for a specific command?&lt;/p&gt;
+
+&lt;p&gt;You can find it easily by issuing this on the command line:&lt;/p&gt;
+&lt;br /&gt;&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='bash'&gt;&lt;span class='nb'&gt;alias&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This command will list all aliases currently set for you shell account.&lt;/p&gt;
+
+&lt;p&gt;To get the most out of this command based on your current command history, please check out my other post &lt;a href='/2013/05/10/top-10-shell-commands-you-currently-use/'&gt;Top 10 shell commands you currently use&lt;/a&gt;.&lt;/p&gt;</content>
+ </entry>
+ 
+ 
+</feed>

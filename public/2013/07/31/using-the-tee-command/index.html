@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Using the tee command</title>
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+        <!-- MailChimp form style -->
+        <link href="/css/slim-081711.css" rel="stylesheet" type="text/css">
+        <style type="text/css">
+          #mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; }
+        </style>
+    </head>
+    <body style="background-color: white">
+        <div class="container" align="center" style="background-color:
+          #FAFAFA">
+
+          <div id="content" style="width: 600px; border: 3px solid
+            lightgray; padding: 20px; background-color: white">
+            <a href="/"><img
+              src="/assets/images/LearningTheUnixCommandLine.png"></a>
+            <table width="100%">
+              <tr>
+                <td align="left">
+                  <p>Hey there!</p>
+
+<p>It&#8217;s time for another installment of UNIX command line tips. In the previous newsletter, we talked about the <code>env</code> command and how you can use it to view your account&#8217;s environment variables, as well as a couple of other neat tricks. This week, we&#8217;re going to demonstrate something completely different. I hope you enjoy it.</p>
+
+<p>Let&#8217;s say you&#8217;re interested in how much free disk space you have on your system.</p>
+
+<p>That easy enough:</p>
+<br /><div class='highlight'><pre><code class='bash'>iMac:~ <span class='nv'>$ </span>df -h
+Filesystem      Size   Used  Avail Capacity  iused     ifree %iused
+/dev/disk0s2   233Gi  151Gi   82Gi    65% 39657424  21412016   65% 
+devfs          204Ki  204Ki    0Bi   100%      704         0  100% 
+/dev/disk1s2   931Gi   91Gi  840Gi    10% 23782594 220324072   10% 
+map -hosts       0Bi    0Bi    0Bi   100%        0         0  100% 
+map auto_home    0Bi    0Bi    0Bi   100%        0         0  100% 
+</code></pre></div>
+<p>But what if we also want to save those results to a file?</p>
+
+<p>That would be easy to do as well, just by redirecting standard output (i.e., stdout) to a file:</p>
+<br /><div class='highlight'><pre><code class='bash'>iMac:~ <span class='nv'>$ </span>df -h &gt; df.out
+</code></pre></div>
+<p><strong>That works fine, except that I don&#8217;t want to type 2 separate commands.</strong></p>
+
+<p>In fact, for some examples, it might not be feasible to run the commands separately because the output might differ. What you need instead is the ability to capture the output, send it to standard output (e.g., the terminal), and also save it to a separate file.</p>
+
+<p>Well, there&#8217;s a command that will help you do just that - the tee command.</p>
+
+<p><strong>According to the UNIX man pages on OS X:</strong> <em>The tee utility copies from standard input to standard output, making a copy in zero or more files.</em></p>
+
+<p>Let&#8217;s try our example again, but this time using tee:</p>
+<br /><div class='highlight'><pre><code class='bash'>iMac:~ <span class='nv'>$ </span>df -h | tee df.out
+Filesystem      Size   Used  Avail Capacity  iused     ifree %iused
+/dev/disk0s2   233Gi  151Gi   82Gi    65% 39657219  21412221   65%
+devfs          204Ki  204Ki    0Bi   100%      704         0  100%
+/dev/disk1s2   931Gi   91Gi  840Gi    10% 23782594 220324072   10%
+map -hosts       0Bi    0Bi    0Bi   100%        0         0  100%
+map auto_home    0Bi    0Bi    0Bi   100%        0         0  100%
+</code></pre></div>
+<p>Now let&#8217;s take a look at the contents of that file, just to be sure that the disk information was written there in addition to what we saw on standard output:</p>
+<br /><div class='highlight'><pre><code class='bash'>iMac:~ <span class='nv'>$ </span>cat df.out 
+Filesystem      Size   Used  Avail Capacity  iused     ifree %iused
+/dev/disk0s2   233Gi  151Gi   82Gi    65% 39657219  21412221   65% 
+devfs          204Ki  204Ki    0Bi   100%      704         0  100% 
+/dev/disk1s2   931Gi   91Gi  840Gi    10% 23782594 220324072   10% 
+map -hosts       0Bi    0Bi    0Bi   100%        0         0  100% 
+map auto_home    0Bi    0Bi    0Bi   100%        0         0  100% 
+</code></pre></div>
+<p>The output is identical to what we saw when we ran the original command, which is exactly the result we want.</p>
+
+<p>So, next time you need to see standard output and also copy it to a file, remember that the tee command is a great option.</p>
+                </td>
+              </tr>
+            </table>
+
+            <div class="footer">
+  <div class="signature">
+    <div class="avatar">
+      <a href="http://chipcastle.com/"><img src="/assets/images/chip.jpg"></a>
+    </div>
+    <div class="contact">
+      <h4>
+        <a href="http://chipcastle.com/">Chip Castle</a>
+      </h4>
+      <h5>
+        <a href="https://chip.github.io">UNIX hacker, 20+ years</a>
+      </h5>
+    </div>
+    <ul>
+      <li>
+        <a href="https://coderwall.com/chip">
+          <img src="/assets/images/coderwall-32-black.png">
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/chip">
+          <img src="/assets/images/github-32-black.png">
+        </a>
+      </li>
+      <li>
+        <a href="https://twitter.com/chipcastle">
+          <img src="/assets/images/twitter-32-black.png">
+        </a>
+      </li>
+      <li>
+        <a href="https://plus.google.com/106206115730073392445?rel=author">
+          <img src="/assets/images/googleplus-32-black.png">
+        </a>
+      </li>
+      <li>
+        <a href="http://feeds.feedburner.com/github/chip">
+          <img src="/assets/images/rss-32-black.png">
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+          </div>
+        </div> <!-- /container -->
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-40313722-2', 'chipcastle.com');
+          ga('send', 'pageview');
+        </script>
+    </body>
+</html>

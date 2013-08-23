@@ -1,0 +1,16 @@
+
+http://chip.github.io/archive.html
+http://chip.github.io/atom.xml
+http://chip.github.io/categories.html
+http://chip.github.io/index.html
+http://chip.github.io/pages.html
+http://chip.github.io/rss.xml
+http://chip.github.io/sitemap.txt
+http://chip.github.io/tags.html
+
+http://chip.github.io/2013/07/31/using-the-tee-command
+http://chip.github.io/2013/07/24/using-env-to-print-and-set-your-environment-variables
+http://chip.github.io/2013/07/02/top-10-shell-commands-you-currently-use---part-2
+http://chip.github.io/2013/06/22/do-you-manage-a-lot-of-servers-with-ssh
+http://chip.github.io/2013/05/10/top-10-shell-commands-you-currently-use
+http://chip.github.io/2013/04/15/list-aliases-in-unix-or-linux
