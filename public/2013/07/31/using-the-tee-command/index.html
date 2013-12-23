@@ -29,14 +29,23 @@
             <table width="100%">
               <tr>
                 <td align="left">
-                  <p>Hey there!</p>
+                  
+<p>Hey there!  </p>
 
-<p>It&#8217;s time for another installment of UNIX command line tips. In the previous newsletter, we talked about the <code>env</code> command and how you can use it to view your account&#8217;s environment variables, as well as a couple of other neat tricks. This week, we&#8217;re going to demonstrate something completely different. I hope you enjoy it.</p>
+<p>It&#8217;s time for another installment of UNIX command line tips.  In the
+previous newsletter, we talked about the <code>env</code> command and how you can
+use it to view your account&#8217;s environment variables, as well as a couple
+of other neat tricks.  This week, we&#8217;re going to demonstrate something
+completely different.  I hope you enjoy it.</p>
 
-<p>Let&#8217;s say you&#8217;re interested in how much free disk space you have on your system.</p>
+<p>Let&#8217;s say you&#8217;re interested in how much free disk space you have on your
+system.  </p>
 
 <p>That easy enough:</p>
-<br /><div class='highlight'><pre><code class='bash'>iMac:~ <span class='nv'>$ </span>df -h
+
+<p><br /></p>
+
+<div class="highlight"><pre><code class="bash">iMac:~ <span class="nv">$ </span>df -h
 Filesystem      Size   Used  Avail Capacity  iused     ifree %iused
 /dev/disk0s2   233Gi  151Gi   82Gi    65% 39657424  21412016   65% 
 devfs          204Ki  204Ki    0Bi   100%      704         0  100% 
@@ -44,21 +53,35 @@ devfs          204Ki  204Ki    0Bi   100%      704         0  100%
 map -hosts       0Bi    0Bi    0Bi   100%        0         0  100% 
 map auto_home    0Bi    0Bi    0Bi   100%        0         0  100% 
 </code></pre></div>
+
 <p>But what if we also want to save those results to a file?</p>
 
-<p>That would be easy to do as well, just by redirecting standard output (i.e., stdout) to a file:</p>
-<br /><div class='highlight'><pre><code class='bash'>iMac:~ <span class='nv'>$ </span>df -h &gt; df.out
+<p>That would be easy to do as well, just by redirecting standard output
+(i.e., stdout) to a file:</p>
+
+<p><br /></p>
+
+<div class="highlight"><pre><code class="bash">iMac:~ <span class="nv">$ </span>df -h &gt; df.out
 </code></pre></div>
+
 <p><strong>That works fine, except that I don&#8217;t want to type 2 separate commands.</strong></p>
 
-<p>In fact, for some examples, it might not be feasible to run the commands separately because the output might differ. What you need instead is the ability to capture the output, send it to standard output (e.g., the terminal), and also save it to a separate file.</p>
+<p>In fact, for some examples, it might not be feasible to run the commands
+separately because the output might differ.  What you need instead is
+the ability to capture the output, send it to standard output (e.g., the
+terminal), and also save it to a separate file.  </p>
 
-<p>Well, there&#8217;s a command that will help you do just that - the tee command.</p>
+<p>Well, there&#8217;s a command that will help you do just that - the tee command.  </p>
 
-<p><strong>According to the UNIX man pages on OS X:</strong> <em>The tee utility copies from standard input to standard output, making a copy in zero or more files.</em></p>
+<p><strong>According to the UNIX man pages on OS X:</strong>
+<em>The tee utility copies from standard input to standard output, making
+a copy in zero or more files.</em></p>
 
 <p>Let&#8217;s try our example again, but this time using tee:</p>
-<br /><div class='highlight'><pre><code class='bash'>iMac:~ <span class='nv'>$ </span>df -h | tee df.out
+
+<p><br /></p>
+
+<div class="highlight"><pre><code class="bash">iMac:~ <span class="nv">$ </span>df -h <span class="p">|</span> tee df.out
 Filesystem      Size   Used  Avail Capacity  iused     ifree %iused
 /dev/disk0s2   233Gi  151Gi   82Gi    65% 39657219  21412221   65%
 devfs          204Ki  204Ki    0Bi   100%      704         0  100%
@@ -66,8 +89,14 @@ devfs          204Ki  204Ki    0Bi   100%      704         0  100%
 map -hosts       0Bi    0Bi    0Bi   100%        0         0  100%
 map auto_home    0Bi    0Bi    0Bi   100%        0         0  100%
 </code></pre></div>
-<p>Now let&#8217;s take a look at the contents of that file, just to be sure that the disk information was written there in addition to what we saw on standard output:</p>
-<br /><div class='highlight'><pre><code class='bash'>iMac:~ <span class='nv'>$ </span>cat df.out 
+
+<p>Now let&#8217;s take a look at the contents of that file, just to be sure that
+the disk information was written there in addition to what we saw on
+standard output:</p>
+
+<p><br /></p>
+
+<div class="highlight"><pre><code class="bash">iMac:~ <span class="nv">$ </span>cat df.out 
 Filesystem      Size   Used  Avail Capacity  iused     ifree %iused
 /dev/disk0s2   233Gi  151Gi   82Gi    65% 39657219  21412221   65% 
 devfs          204Ki  204Ki    0Bi   100%      704         0  100% 
@@ -75,9 +104,14 @@ devfs          204Ki  204Ki    0Bi   100%      704         0  100%
 map -hosts       0Bi    0Bi    0Bi   100%        0         0  100% 
 map auto_home    0Bi    0Bi    0Bi   100%        0         0  100% 
 </code></pre></div>
-<p>The output is identical to what we saw when we ran the original command, which is exactly the result we want.</p>
 
-<p>So, next time you need to see standard output and also copy it to a file, remember that the tee command is a great option.</p>
+<p>The output is identical to what we saw when we ran the original command,
+which is exactly the result we want.</p>
+
+<p>So, next time you need to see standard output and also copy it to
+a file, remember that the tee command is a great option.</p>
+
+
                 </td>
               </tr>
             </table>

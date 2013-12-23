@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>The bang operator</title>
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+        <!-- MailChimp form style -->
+        <link href="/css/slim-081711.css" rel="stylesheet" type="text/css">
+        <style type="text/css">
+          #mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; }
+        </style>
+    </head>
+    <body style="background-color: white">
+        <div class="container" align="center" style="background-color:
+          #FAFAFA">
+
+          <div id="content" style="width: 600px; border: 3px solid
+            lightgray; padding: 20px; background-color: white">
+            <a href="/"><img
+              src="/assets/images/LearningTheUnixCommandLine.png"></a>
+            <table width="100%">
+              <tr>
+                <td align="left">
+                  
+<p>As mentioned back in July with the newsletter, <a href="http://us7.campaign-archive2.com/?u=fd1f24aadaae48b22d7d03a3b&amp;id=fd7c6dc6c1&amp;e=[UNIQID]">Top 10 shell commands
+you currently
+use</a>,
+I showed how the <code>history</code> command displays the command history list
+with line numbers.  Here is a sample of the last 5 lines of <code>history</code> on
+my local system:  </p>
+
+<pre><code>1786  rake post title="The-bang-operator"
+1787  vi \_posts/2013-12-22-the-bang-operator.md
+1788  man history
+1789  help history
+1790  fg
+</code></pre>
+
+<p>We can make use of our command history more effectively by using the
+shell &#8220;bang operator&#8221;.
+<br />
+<br /></p>
+
+<h2 id="shell--aka-bang-operator">shell ! (aka bang operator)</h2>
+
+<p>The line numbers shown in history output are used as command
+identifiers.  Therefore, if I wanted to run the <code>rake</code> command shown
+above, all I would need to do is specify the bang operator provided by
+the shell, followed immediately by the number associated with the
+command:</p>
+
+<pre><code>!1786
+</code></pre>
+
+<p>Alternatively, I could also use the bang operator before a command:</p>
+
+<pre><code>!rake
+</code></pre>
+
+<p>This allows you to run previous commands quickly without having to
+remember all of the options, switches or arguments that were passed to
+the command.
+<br />
+<br /></p>
+
+<h2 id="using-p-with-the-bang-operator">Using :p with the bang operator</h2>
+
+<p>However, what if the command you want is far back in your history and
+you do not want to run history and scroll through a heavy amount of
+output?  One solution is to use <code>:p</code> with the bang operator, which
+allows you to recall that last command, but without running it:</p>
+
+<pre><code>!rake:p
+rake post title="The-bang-operator"
+</code></pre>
+
+<p>This is useful because sometimes you have other commands that might
+match the command pattern you specify with the bang operator, yet those
+commands might be unsafe to run.  In other words, what if the last
+<code>rake</code> command I ran did something destructive?  By using <code>:p</code>, it
+allows you to recall the command safely and then decide if it is safe to
+run.
+<br />                                                       <br />
+<br />                                                         </p>
+
+<h2 id="learning-the-unix-command-line-on-os-x-screencast">&#8220;Learning the UNIX command line on OS X&#8221; screencast</h2>
+
+<p>Since my last newsletter, I have produced a screencast called,
+<a href="https://www.udemy.com/learning-the-unix-command-line-on-os-x/?couponCode=HOLIDAYNEWS2013">&#8220;Learning the UNIX command line on OS
+X&#8221;</a>,
+which contains <strong>over 50 lectures and 3.5 hours of content</strong>.</p>
+
+<p><a href="https://www.udemy.com/learning-the-unix-command-line-on-os-x/?couponCode=HOLIDAYNEWS2013"><img src="/assets/images/udemy-screencast.png" alt="Learning the UNIX command line on OS
+X" /></a></p>
+
+<p><strong>As appreciation for my newsletter subscribers, I am offering a coupon
+for purchasing the screencast at $35, which is 64% off the current $99
+Udemy price.  This offer is only available through December 25, 2013.</strong></p>
+
+<p>Be sure to use coupon code <strong>HOLIDAYNEWS2013</strong>, which is already
+included in the link above.</p>
+
+<p>Happy Holidays!</p>
+
+<p>Chip Castle</p>
+
+                </td>
+              </tr>
+            </table>
+
+            <div class="footer">
+  <div class="signature">
+    <div class="avatar">
+      <a href="http://chipcastle.com/"><img src="/assets/images/chip.jpg"></a>
+    </div>
+    <div class="contact">
+      <h4>
+        <a href="http://chipcastle.com/">Chip Castle</a>
+      </h4>
+      <h5>
+        <a href="https://chip.github.io">UNIX hacker, 20+ years</a>
+      </h5>
+    </div>
+    <ul>
+      <li>
+        <a href="https://coderwall.com/chip">
+          <img src="/assets/images/coderwall-32-black.png">
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/chip">
+          <img src="/assets/images/github-32-black.png">
+        </a>
+      </li>
+      <li>
+        <a href="https://twitter.com/chipcastle">
+          <img src="/assets/images/twitter-32-black.png">
+        </a>
+      </li>
+      <li>
+        <a href="https://plus.google.com/106206115730073392445?rel=author">
+          <img src="/assets/images/googleplus-32-black.png">
+        </a>
+      </li>
+      <li>
+        <a href="http://feeds.feedburner.com/github/chip">
+          <img src="/assets/images/rss-32-black.png">
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+          </div>
+        </div> <!-- /container -->
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-40313722-2', 'chipcastle.com');
+          ga('send', 'pageview');
+        </script>
+    </body>
+</html>

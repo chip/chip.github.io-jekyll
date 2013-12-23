@@ -8,6 +8,7 @@ http://chip.github.io/rss.xml
 http://chip.github.io/sitemap.txt
 http://chip.github.io/tags.html
 
+http://chip.github.io/2013/12/22/the-bang-operator
 http://chip.github.io/2013/07/31/using-the-tee-command
 http://chip.github.io/2013/07/24/using-env-to-print-and-set-your-environment-variables
 http://chip.github.io/2013/07/02/top-10-shell-commands-you-currently-use---part-2

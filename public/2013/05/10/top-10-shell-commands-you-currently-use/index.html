@@ -29,44 +29,69 @@
             <table width="100%">
               <tr>
                 <td align="left">
-                  <p>First off, <strong>I need to credit <a href='https://twitter.com/r00k'>Ben Orenstein</a> for this idea</strong>. Since I&#8217;ve found it to be very useful, I thought others could benefit from it, so here goes&#8230;</p>
+                  
+<p>First off, <strong>I need to credit <a href="https://twitter.com/r00k">Ben Orenstein</a> for
+this idea</strong>.  Since I&#8217;ve found it to be very useful, I thought others could
+benefit from it, so here goes&#8230;</p>
 
-<p>From time to time, I like to analyze which unix or linux shell commands I&#8217;m using most frequently. To do this, all I need is a little awk, like the following:</p>
-<br /><div class='highlight'><pre><code class='bash'><span class='nb'>history</span> | <span class='se'>\</span>
-awk <span class='s1'>&#39;{a[$2]++}END{for(i in a){print a[i] &quot; &quot; i}}&#39;</span> | <span class='se'>\</span>
-sort -rn | <span class='se'>\</span>
+<p>From time to time, I like to analyze which unix or linux shell commands I&#8217;m
+using most frequently.  To do this, all I need is a little awk, like the
+following:</p>
+
+<p><br /></p>
+
+<div class="highlight"><pre><code class="bash"><span class="nb">history</span> <span class="p">|</span> <span class="se">\</span>
+awk <span class="s1">&#39;{a[$2]++}END{for(i in a){print a[i] &quot; &quot; i}}&#39;</span> <span class="p">|</span> <span class="se">\</span>
+sort -rn <span class="p">|</span> <span class="se">\</span>
 head
 </code></pre></div>
-<p>So what does this do?</p>
 
-<p>Basically, it parses your history looking at the 2nd column, which is the command you typed and increments it each time it is found.</p>
+<p>So what does this do?  </p>
 
-<p>Then it displays a sorted report showing the count of the command and the command, like this example on my iMac:</p>
-<br /><div class='highlight'><pre><code class='bash'>1705 git
+<p>Basically, it parses your history looking at the 2nd column, which is the
+command you typed and increments it each time it is found.</p>
+
+<p>Then it displays a sorted report showing the count of the command and the
+command, like this example on my iMac:</p>
+
+<p><br /></p>
+
+<div class="highlight"><pre><code class="bash">1705 git
 1420 ack
 1016 vi
 501 ls
 490 commit
-310 <span class='nb'>cd</span>
+310 <span class="nb">cd</span>
 211 cat
 202 g
 191 rm
 181 c
 </code></pre></div>
-<p>Based on this output of the top 10 most frequently used shell commands, it shows that I&#8217;m using git, ack, and vi a TON, so it would be helpful to create aliases for these commands. I generally prefer 1-character aliases if I can get away with it. Here are a few examples:</p>
-<br /><div class='highlight'><pre><code class='bash'><span class='nb'>alias </span><span class='nv'>a</span><span class='o'>=</span><span class='s2'>&quot;ack&quot;</span>
-<span class='nb'>alias </span><span class='nv'>g</span><span class='o'>=</span><span class='s2'>&quot;git&quot;</span>
-<span class='nb'>alias </span><span class='nv'>v</span><span class='o'>=</span><span class='s2'>&quot;vi&quot;</span>
-<span class='nb'>alias </span><span class='nv'>l</span><span class='o'>=</span><span class='s2'>&quot;ls -al&quot;</span>
-<span class='nb'>alias </span><span class='nv'>c</span><span class='o'>=</span><span class='s2'>&quot;git commit -m&quot;</span>
-</code></pre></div>
-<p>I have found that these aliases alone have sped up my workflow significantly, as well as reduce the wear and tear on my fingers.</p>
 
-<p>This has become so useful that I created an alias for it as well, which I&#8217;ll cover in a later tip.</p>
+<p>Based on this output of the top 10 most frequently used shell commands, it
+shows that I&#8217;m using git, ack, and vi a TON, so it would be helpful to create
+aliases for these commands.  I generally prefer 1-character aliases if I can
+get away with it.  Here are a few examples:</p>
+
+<p><br /></p>
+
+<div class="highlight"><pre><code class="bash"><span class="nb">alias </span><span class="nv">a</span><span class="o">=</span><span class="s2">&quot;ack&quot;</span>
+<span class="nb">alias </span><span class="nv">g</span><span class="o">=</span><span class="s2">&quot;git&quot;</span>
+<span class="nb">alias </span><span class="nv">v</span><span class="o">=</span><span class="s2">&quot;vi&quot;</span>
+<span class="nb">alias </span><span class="nv">l</span><span class="o">=</span><span class="s2">&quot;ls -al&quot;</span>
+<span class="nb">alias </span><span class="nv">c</span><span class="o">=</span><span class="s2">&quot;git commit -m&quot;</span>
+</code></pre></div>
+
+<p>I have found that these aliases alone have sped up my workflow significantly,
+as well as reduce the wear and tear on my fingers.</p>
+
+<p>This has become so useful that I created an alias for it as well, which I&#8217;ll
+cover in a later tip.</p>
 
 <p>Please try it out and let me know your thoughts.</p>
 
 <p>Enjoy, Chip</p>
+
                 </td>
               </tr>
             </table>

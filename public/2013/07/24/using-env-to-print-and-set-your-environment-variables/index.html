@@ -29,54 +29,104 @@
             <table width="100%">
               <tr>
                 <td align="left">
-                  <p>From time to time, I need to know the value of a specific <strong>UNIX</strong> environment variable. Of course, that&#8217;s easy enough to do if you know the exact spelling of the variable, as in the case of the current working directory:</p>
-<br /><div class='highlight'><pre><code class='bash'>☺ <span class='nb'>echo</span> <span class='nv'>$PWD</span>
+                  
+<p>From time to time, I need to know the value of a specific <strong>UNIX</strong> environment
+variable.  Of course, that’s easy enough to do if you know the exact spelling of
+the variable, as in the case of the current working directory:</p>
+
+<p><br /></p>
+
+<div class="highlight"><pre><code class="bash">☺ <span class="nb">echo</span> <span class="nv">$PWD</span>
 /Users/chip/code/chip.github.com
 </code></pre></div>
-<p>However, what if I&#8217;m unsure of the spelling, or I simply want to see all of the variables that are set for my current environment? That&#8217;s easy enough to find as well, using the <code>env</code> command (output below is limited for readability):</p>
-<br /><div class='highlight'><pre><code class='bash'>☺ env 
-<span class='nv'>ARCHFLAGS</span><span class='o'>=</span>-arch x86_64
-<span class='nv'>Apple_PubSub_Socket_Render</span><span class='o'>=</span>/tmp/launch-gANhjR/Render
-<span class='nv'>Apple_Ubiquity_Message</span><span class='o'>=</span>/tmp/launch-yn5YIm/Apple_Ubiquity_Message
-<span class='nv'>CLICOLOR</span><span class='o'>=</span>1
-<span class='nv'>COMMAND_MODE</span><span class='o'>=</span>unix2003
-<span class='nv'>DISPLAY</span><span class='o'>=</span>/tmp/launch-okscQD/org.macosforge.xquartz:0
-<span class='nv'>EDITOR</span><span class='o'>=</span>/usr/bin/vim -f
+
+<p>However, what if I’m unsure of the spelling, or I simply want to see all of the
+variables that are set for my current environment?  That’s easy enough to find
+as well, using the <code>env</code> command (output below is limited for readability):</p>
+
+<p><br /></p>
+
+<div class="highlight"><pre><code class="bash">☺ env 
+<span class="nv">ARCHFLAGS</span><span class="o">=</span>-arch x86_64
+<span class="nv">Apple_PubSub_Socket_Render</span><span class="o">=</span>/tmp/launch-gANhjR/Render
+<span class="nv">Apple_Ubiquity_Message</span><span class="o">=</span>/tmp/launch-yn5YIm/Apple_Ubiquity_Message
+<span class="nv">CLICOLOR</span><span class="o">=</span>1
+<span class="nv">COMMAND_MODE</span><span class="o">=</span>unix2003
+<span class="nv">DISPLAY</span><span class="o">=</span>/tmp/launch-okscQD/org.macosforge.xquartz:0
+<span class="nv">EDITOR</span><span class="o">=</span>/usr/bin/vim -f
 .
 .
 .
 </code></pre></div>
-<p>That&#8217;s pretty effective and since the environment variables are sorted, it makes it easy to find a specific setting.</p>
 
-<p><strong>But,</strong> <code>env</code>, <strong>can do more!</strong> It can also set the environment for you for specific utilities. Let&#8217;s look at some example Ruby code to demonstrate this example:</p>
-<br /><div class='highlight'><pre><code class='bash'>☺ cat env.rb
-</code></pre></div><br /><div class='highlight'><pre><code class='ruby'><span class='c1'>#!/usr/bin/env ruby</span>
+<p>That’s pretty effective and since the environment variables are sorted, it makes
+it easy to find a specific setting.</p>
 
-<span class='nb'>puts</span> <span class='no'>ENV</span><span class='o'>[</span><span class='s1'>&#39;PWD&#39;</span><span class='o'>]</span>
+<p><strong>But,</strong> <code>env</code>, <strong>can do more!</strong>  It can also set the environment for you for specific
+utilities.  Let’s look at some example Ruby code to demonstrate this example:</p>
+
+<p><br /></p>
+
+<div class="highlight"><pre><code class="bash">☺ cat env.rb
 </code></pre></div>
-<p>Here you can see that this little script simply prints the contents of the <code>PWD</code> environment variable to <code>STDOUT</code>.</p>
 
-<p>For sanity, let&#8217;s check the current setting of that variable just so we can see if it matches our expectations:</p>
-<br /><div class='highlight'><pre><code class='bash'>☺ <span class='nb'>echo</span> <span class='nv'>$PWD</span>
+<p><br /></p>
+
+<div class="highlight"><pre><code class="ruby"><span class="c1">#!/usr/bin/env ruby</span>
+
+<span class="nb">puts</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;PWD&#39;</span><span class="o">]</span>
+</code></pre></div>
+
+<p>Here you can see that this little script simply prints the contents of the <code>PWD</code>
+environment variable to <code>STDOUT</code>.</p>
+
+<p>For sanity, let’s check the current setting of that variable just so we can see
+if it matches our expectations:</p>
+
+<p><br /></p>
+
+<div class="highlight"><pre><code class="bash">☺ <span class="nb">echo</span> <span class="nv">$PWD</span>
 /Users/chip/code/chip.github.com
 </code></pre></div>
-<p>That was what I expected. So, let&#8217;s say I want this script to use another setting for that environment variable. I&#8217;ll try to set it first before calling the script:</p>
-<br /><div class='highlight'><pre><code class='bash'>☺ env <span class='nv'>PWD</span><span class='o'>=</span>/tmp ./env.rb
+
+<p>That was what I expected.  So, let’s say I want this script to use another
+setting for that environment variable.  I’ll try to set it first before calling
+the script:</p>
+
+<p><br /></p>
+
+<div class="highlight"><pre><code class="bash">☺ env <span class="nv">PWD</span><span class="o">=</span>/tmp ./env.rb
 /Users/chip/code/chip.github.com
 </code></pre></div>
-<p><strong>But, wait! That didn&#8217;t do anything.</strong> That&#8217;s because the <code>env</code> command inherits the current environment by default, which as we saw before had a different value than the one we passed: <code>/tmp</code>.</p>
+
+<p><strong>But, wait!  That didn’t do anything.</strong>  That’s because the <code>env</code> command inherits
+the current environment by default, which as we saw before had a different value
+than the one we passed: <code>/tmp</code>.</p>
 
 <p>The way to get around this is to pass the <code>-i</code> flag to <code>env</code>, like so:</p>
-<br /><div class='highlight'><pre><code class='bash'>☺ env -i <span class='nv'>PWD</span><span class='o'>=</span>/tmp ./env.rb
+
+<p><br /></p>
+
+<div class="highlight"><pre><code class="bash">☺ env -i <span class="nv">PWD</span><span class="o">=</span>/tmp ./env.rb
 /tmp
 </code></pre></div>
-<p>Now it uses the variable as expected. <strong>Keep in mind that it didn&#8217;t set this variable permanently</strong>, but instead just for the execution of the utility we passed it, which in this case was the <code>env.rb</code> script.</p>
 
-<p>To prove it, let&#8217;s take a look at the <code>PWD</code> variable one more time:</p>
-<br /><div class='highlight'><pre><code class='bash'>☺ <span class='nb'>echo</span> <span class='nv'>$PWD</span>
+<p>Now it uses the variable as expected. <strong>Keep in mind that it didn’t set this
+variable permanently</strong>, but instead just for the execution of the utility we
+passed it, which in this case was the <code>env.rb</code> script.</p>
+
+<p>To prove it, let’s take a look at the <code>PWD</code> variable one more time:</p>
+
+<p><br /></p>
+
+<div class="highlight"><pre><code class="bash">☺ <span class="nb">echo</span> <span class="nv">$PWD</span>
 /Users/chip/code/chip.github.com
 </code></pre></div>
-<p>Based on the information above, if you ever need to review your current environment, or set it for a single run of a utility, it&#8217;s easy enough to do using the <code>env</code> command.</p>
+
+<p>Based on the information above, if you ever need to review your current
+environment, or set it for a single run of a utility, it’s easy enough to do
+using the <code>env</code> command.</p>
+
                 </td>
               </tr>
             </table>
