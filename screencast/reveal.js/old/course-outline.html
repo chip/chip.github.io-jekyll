@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Course Outline</title>
+
+		<meta name="description" content="Learning the UNIX command line on OS X">
+		<meta name="author" content="Chip Castle">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/chip.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+			<!-- Any section element inside of this container is displayed as a slide -->
+      <!--
+			<div class="slides">
+				<section>
+          <img src="/images/LearningTheUnixCommandLine.png">
+				</section>
+			</div>
+
+			<div class="slides">
+				<section>
+          <h2>Screencasting</h2>
+          <p>
+            Chip Castle Dot Com, Inc.
+          </p>
+				</section>
+			</div>
+
+			<div class="slides">
+				<section>
+          <h2>Music</h2>
+          <p>
+            "I dunno", by <strong>grapes</strong>
+          </p>
+          <p>
+            http://ccmixter.org/files/grapes/16626
+          </p>
+				</section>
+			</div>
+
+			<div class="slides">
+				<section>
+          <h2>More UNIX tips</h2>
+          <p>
+            http://unix.chipcastle.com
+          </p>
+				</section>
+			</div>
+      -->
+
+			<div class="slides">
+				<section>
+          <h2>Course outline</h2>
+				</section>
+			</div>
+
+			<div class="slides">
+				<section>
+          <h2>Why should I learn <br /> the UNIX command line?</h2>
+				</section>
+			</div>
+
+			<div class="slides">
+				<section>
+          <h2>Configuring the Terminal</h2>
+				</section>
+			</div>
+
+			<div class="slides">
+				<section>
+          <h2>Getting Help</h2>
+        </section>
+			</div>
+
+			<div class="slides">
+				<section>
+          <h2>Managing files <br /> and directories</h2>
+        </section>
+			</div>
+
+			<div class="slides">
+				<section>
+          <h2>Understanding <br />directory and file <br />permissions</h2>
+				</section>
+			</div>
+
+			<div class="slides">
+				<section>
+          <h2>Redirection and Pipes</h2>
+				</section>
+			</div>
+
+			<div class="slides">
+				<section>
+          <h2>Working with Processes</h2>
+				</section>
+			</div>
+
+			<div class="slides">
+				<section>
+          <h2>Installing software<br /> from the command line</h2>
+				</section>
+			</div>
+
+			<div class="slides">
+				<section>
+          <h2>Features of a UNIX shell</h2>
+				</section>
+			</div>
+
+			<div class="slides">
+				<section>
+          <h2>Let's get started!</h2>
+				</section>
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: false,
+				progress: true,
+				history: true,
+				center: true,
+        maxScale: 2.0,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'none', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
