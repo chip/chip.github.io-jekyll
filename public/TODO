@@ -1,0 +1,12 @@
+setup deployment method for unix.chipcastle.com per http://jekyllrb.com/docs/deployment-methods/
+backup learning-the-unix-command-line-on-os-x.chipcastle.com 
+backup _site on server (or backup)
+deploy with "git push deploy master" using hook found on server
+move over ~/code/learning-the-unix-command-line bits:
+  * website?
+  * newsletter?
+  * misc?
+  * drafts?
+  * reveal.js
+  * text
+  * other...?
